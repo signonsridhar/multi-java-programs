@@ -1,7 +1,0 @@
-# Directories
-.idea
-out  
-servlet
-
-# Ignore idea
-multi_project_java.iml  
