@@ -5,6 +5,37 @@ package com.cert.hackerrank.arrays.sparsearrays.linkedLists;
  */
 public class DeleteNode {
 
+    public NodeElem deleteAllNode(NodeElem head, int value) {
+        if (head == null)
+            return null;
+
+        NodeElem curr = head;        ;
+        NodeElem headRet = head;
+        NodeElem prev = null, delNode = head;
+        while (curr != null ){
+            delNode = curr;
+
+            if (delNode.data == value) {
+                //value matches, delete Node
+                curr = curr.next;
+                if (prev != null) {
+                    prev.next = curr;
+                }
+                if (headRet == delNode){
+                    headRet = headRet.next;
+                }
+                delNode.next = null;
+                //if first node is a hit, keep prev=null, do nothing
+            }
+            else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+        return headRet;
+
+    }
+
     public NodeElem deleteNode(NodeElem head, int position) {
 
         NodeElem curr = head;
@@ -77,11 +108,14 @@ public class DeleteNode {
         head = inst.insertAtPosition(head, 10, 1);
         inst.printList(head);
         head = inst.insertAtPosition(head, 100, 1);
+        head = inst.insertAtPosition(head, 10, 1);
+        head = inst.insertAtPosition(head, 5, 2);
         inst.printList(head);
         System.out.println("Delleting...");
         //NodeElem head = null;
-        head = inst.deleteNode(head,  0);
-        head = inst.deleteNode(head, 1);
+        /*head = inst.deleteNode(head,  0);
+        head = inst.deleteNode(head, 1);*/
+        head = inst.deleteAllNode(head, 10);
         inst.printList(head);
     }
 }
